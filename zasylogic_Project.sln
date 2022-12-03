@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zasylogicWeb", "zasylogicWeb\zasylogicWeb.csproj", "{5DFF1DB3-7F1D-44BE-82C7-011F3BC130F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zasylogicApi", "zasylogicApi\zasylogicApi.csproj", "{70869520-6F00-46D6-B116-75DD94691A68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DFF1DB3-7F1D-44BE-82C7-011F3BC130F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DFF1DB3-7F1D-44BE-82C7-011F3BC130F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DFF1DB3-7F1D-44BE-82C7-011F3BC130F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DFF1DB3-7F1D-44BE-82C7-011F3BC130F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70869520-6F00-46D6-B116-75DD94691A68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70869520-6F00-46D6-B116-75DD94691A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70869520-6F00-46D6-B116-75DD94691A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70869520-6F00-46D6-B116-75DD94691A68}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED53E5D8-183F-4BCF-8900-F43F7660DA96}
+	EndGlobalSection
+EndGlobal

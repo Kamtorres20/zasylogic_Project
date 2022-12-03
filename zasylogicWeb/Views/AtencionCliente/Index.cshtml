@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "AtencionCliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<h2>FORMULARIO WEB DE ATENCION AL CLIENTE</h2>
+
+<div class="row">
+    <div class="col-md-2"><label>Nombre:</label></div>
+    <div class="col-md-10"><input id="txtnombre" class="form-control" name="Nombre" /></div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-2"><label>Apellidos:</label></div>
+    <div class="col-md-10"><input id="txtapellidos" class="form-control" name="Apellidos" /></div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2"><label>Telefono Celular:</label></div>
+    <div class="col-md-10"><input id="txtcelular" class="form-control" name="Celular" /></div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2"><label>Email:</label></div>
+    <div class="col-md-10"><input id="txtEmail" class="form-control" name="Email" /></div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2"><label>Sexo:</label></div>
+    <div class="col-md-10">
+            <label class="radio-inline">
+                <input type="radio" name="optradio" value="H">Hombre
+            </label>
+            <label class="radio-inline">
+            <input type="radio" name="optradio" value="M">Mujer
+            </label>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2"><label>Motivo:</label></div>
+    <div class="col-md-10">
+        <select id="slmotivo" class="custom-select"style="width:150px;">
+            <option value="I">Incidencia</option>
+            <option value="Q">Queja</option>
+            <option value="R">Reclamación</option>
+            <option value="S">Sugerencia</option>
+        </select>
+    </div>
+</div>
+
+<div class="text-center panel-body">
+    <button id="btnenviar" class="btn btn-primary">Enviar</button>
+</div>
+
+
+
+<br />
+
+
+<h2>Atencion Cliente List</h2>
+<hr />
+<button onclick="GetAllAtencionCliente()" class="btn btn-primary">Cargar lista Atencion Cliente</button>
+<input class="form-control" id="myFilter" type="text" placeholder="Search here">
+<table id="tblAtencionCliente" class="table table-sm table-striped table-bordered m-2">
+    <thead>
+        <tr>
+            <th>AtencionClienteId Id</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Celular</th>
+            <th>Email</th>
+            <th>Sexo</th>
+            <th>Motivo</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#myFilter").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+            $("#tblAtencionCliente tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+
+    function GetAllAtencionCliente() {
+        $.getJSON("/AtencionCliente/GetAllAtencionCliente", function (atencionClientes) {
+            $("#tblAtencionCliente tbody tr").remove();
+            $.map(atencionClientes, function (atencionCliente) {
+                $("#tblAtencionCliente tbody").append("<tr>"
+                    + " <td>" + atencionCliente.atencionClienteId + "</td>"
+                    + " <td>" + atencionCliente.nombre + "</td>"
+                    + " <td>" + atencionCliente.apellidos + "</td>"
+                    + " <td>" + atencionCliente.celular + "</td>"
+                    + " <td>" + atencionCliente.email + "</td>"
+                    + " <td>" + atencionCliente.sexo + "</td>"
+                    + " <td>" + atencionCliente.motivo + "</td>"
+                    + " <td>"
+                    + "      <button class='btn-success' onclick='Edit(" + atencionCliente.atencionClienteId + ")' style='margin-right:5px'>Edit</button> "
+                    + "      <button class='btn-danger' onclick='Delete(" + atencionCliente.atencionClienteId + ")'>Delete</button> "
+                    + " </td>"
+                    + " </tr>");
+            });
+        });
+    }
+
+    $("#btnenviar").click(function () {
+        var oAtencioncliente = {
+            Nombre: $("#txtnombre").val(),
+            Apellidos: $("#txtapellidos").val(),
+            Celular: $("#txtcelular").val(),
+            Email: $("#txtEmail").val(),
+            Sexo: $('input[name=optradio]:checked').val(),
+            Motivo: $('#slmotivo option:selected').val()
+        };
+
+        $.post("/AtencionCliente/AddUpdateAtencionClientes", oAtencioncliente)
+            .done(function (data) {
+                GetAllAtencionCliente();
+            });
+    });
+
+</script>
