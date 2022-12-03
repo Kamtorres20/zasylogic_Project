@@ -5,6 +5,8 @@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
+
+
 <h2>FORMULARIO WEB DE ATENCION AL CLIENTE</h2>
 
 <div class="row">
@@ -82,6 +84,10 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        setTimeout(function () {
+            window.location.reload(1);
+        }, 30000);
+
       $("#myFilter").on("keyup", function() {
         var value = $(this).val().toLowerCase();
             $("#tblAtencionCliente tr").filter(function () {
@@ -89,6 +95,10 @@
         });
       });
     });
+
+    function AutoRefresh(t) {
+        setTimeout("location.reload(true);", t);
+    }
 
     function GetAllAtencionCliente() {
         $.getJSON("/AtencionCliente/GetAllAtencionCliente", function (atencionClientes) {
